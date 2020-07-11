@@ -1,28 +1,28 @@
 /*
 Name: Nahia Akter
-Date: July 10. 2020
+Date: July 10, 2020
 File: Mid term test
 Description: JavaScript file for the html file */
 
 
 // setup your IIFE (Immediately Invoked Function Expression)
+
 (function () {
 "use strict";
+    function tourDescription(){
 
- function tourDescription(){
+    // hooking into the elements in index.html
 
- // hooking into the elements in index.html
-
-  let InfoParagraph = document.getElementById("IntroParagraph")
-  let Folegandros = document.getElementById("Folegandros")
-  let Alonissos = document.getElementById("Alonissos")
-  let Spetses = document.getElementById("Spetses")
-  let Amorgos = document.getElementById("Amorgos")
-  let Syros = document.getElementById("Syros")
-  let Milos = document.getElementById("Milos")
-  let Hydra = document.getElementById("Hydra")
-  let Ithaca = document.getElementById("Ithaca")
-  let Gavdos = document.getElementById("Gavdos")
+    let InfoParagraph = document.getElementById("IntroParagraph")
+    let Folegandros = document.getElementById("Folegandros")
+    let Alonissos = document.getElementById("Alonissos")
+    let Spetses = document.getElementById("Spetses")
+    let Amorgos = document.getElementById("Amorgos")
+    let Syros = document.getElementById("Syros")
+    let Milos = document.getElementById("Milos")
+    let Hydra = document.getElementById("Hydra")
+    let Ithaca = document.getElementById("Ithaca")
+    let Gavdos = document.getElementById("Gavdos")
 
     // defining string variable from paragraph.txt
 
@@ -39,26 +39,102 @@ Description: JavaScript file for the html file */
 
     // injecting the text using srting variable
 
-        InfoParagraph.innerText = givenInfoParagraph;
-        Folegandros.innerText = givenFolegandros;
-        Alonissos.innerText = givenAlonissos;
-        Spetses.innerText = givenSpetses;
-        Amorgos.innerText = givenAmorgos;
-        Syros.innerText = givenSyros;
-        Milos.innerText = givenMilos;
-        Hydra.innerText = givenHydra;
-        Ithaca.innerText = givenIthaca;
-        Gavdos.innerText = givenGavdos;
-
-}
-    function Start() {
-    console.log(`%cApp Started!`, "font-size: 14px; color: green")
-
-    tourDescription();
+    InfoParagraph.innerText = givenInfoParagraph;
+    Folegandros.innerText = givenFolegandros;
+    Alonissos.innerText = givenAlonissos;
+    Spetses.innerText = givenSpetses;
+    Amorgos.innerText = givenAmorgos;
+    Syros.innerText = givenSyros;
+    Milos.innerText = givenMilos;
+    Hydra.innerText = givenHydra;
+    Ithaca.innerText = givenIthaca;
+    Gavdos.innerText = givenGavdos;
+   }
     
-}
+    // Displays in the console - the form data entered by user
+    function OutputFormDataToConsole() {
 
-window.addEventListener("load", Start);
+        let firstName = document.getElementById("firstName");
+        let lastName = document.getElementById("lastName");
+        let contactNumber = document.getElementById("contactNumber");
+        let email = document.getElementById("email");
+        let yourMessage = document.getElementById("yourMessage");
+
+        console.log(`%c -----------FORM DATA----------- `, "font-weight: bold; font-size: 14px; color: black; background-color: rgba(0, 255, 0, 0.3);");
+        console.log(`%c First Name     : ${firstName.value}`, "color: blue; font-style: italic;");
+        console.log(`%c Last Name      : ${lastName.value}`, "color: blue; font-style: italic;");
+        console.log(`%c Contact Number : ${contactNumber.value}`, "color: blue; font-style: italic;");
+        console.log(`%c Email Address  : ${email.value}`, "color: blue; font-style: italic;");
+        console.log(`%c Your Message   : ${yourMessage.value}`, "color: blue; font-style: italic;");
+        }
+        
+        
+        
+        // function that runs when the contact page is loaded
+    function Contactform() {
+    
+            // configuring the submit button
+            let SendButton = document.getElementById("sendButton");
+            SendButton.onclick = OutputFormDataToConsole();
+        }
+
+         // this allows for smooth scrolling
+    function SmoothScroll() {
+        // code from https://css-tricks.com/snippets/jquery/smooth-scrolling/
+        // Select all links with hashes
+        $('a[href*="#"]')
+            // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function (event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                    &&
+                    location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    let target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            let $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            };
+                        });
+                    }
+                }
+            });
+    }
+
+        
+        
+    function Start()
+        {
+        console.log(`%cApp Started!`, "font-size: 14px; color: blue")
+
+        tourDescription();
+    
+        Contactform();
+
+        SmoothScroll();
+
+
+        }
+
+        window.addEventListener("load", Start);
  
  
  
