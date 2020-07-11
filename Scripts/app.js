@@ -7,7 +7,7 @@ Description: JavaScript file for the html file */
 
 // setup your IIFE (Immediately Invoked Function Expression)
 
-(function () {
+(function (){
 "use strict";
     function tourDescription(){
 
